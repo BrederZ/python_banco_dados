@@ -1,0 +1,23 @@
+[
+    {
+        "ProductID": 322,
+        "Name": "Chainring",
+        "ListPrice": "0.0000",
+        "Color": "Black",
+        "Weight": null
+    },
+    {
+        "ProductID": 320,
+        "Name": "Chainring Bolts",
+        "ListPrice": "0.0000",
+        "Color": "Silver",
+        "Weight": null
+    },
+    {
+        "ProductID": 321,
+        "Name": "Chainring Nut",
+        "ListPrice": "0.0000",
+        "Color": "Silver",
+        "Weight": null
+    }
+]
