@@ -32,5 +32,5 @@ def alterar_preco(product_id, novo_preco):
 if __name__ == "__main__":
     # Exemplo de uso
     product_id = 680
-    novo_preco = 24.00
+    novo_preco = 12.00
     alterar_preco(product_id, novo_preco)
