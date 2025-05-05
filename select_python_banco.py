@@ -17,6 +17,27 @@ def get_connection(config):
         f"UID={config['username']};"
         f"PWD={config['password']}"
     )
+def visualizar_produtos():
+    query = """
+        SELECT ProductID, Name, ListPrice, Color, Weight
+        FROM Production.Product
+        """
+    with get_connection(DB_CONFIG) as conn:
+        cursor = conn.cursor()
+        cursor.execute(query)
+        
+        columns = [column[0] for column in cursor.description]
+        results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    # Exibir JSON formatado no terminal
+    json_output = json.dumps(results, indent=4, default=str)
+    print(json_output)
+
+    # Salvar em arquivo JSON
+    with open('produtos.json', 'w', encoding='utf-8') as f:
+        json.dump(results, f, indent=4, default=str, ensure_ascii=False)
+
+    return(results)
 
 def visualizar_produto(name):
     query = """

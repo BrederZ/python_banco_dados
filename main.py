@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from select_python_banco import visualizar_produto
+from insert_python_banco import criar_produto
+from select_python_banco import visualizar_produto, visualizar_produtos
 from update_python_banco import alterar_preco
 from delete_python_banco import deletar_produto
 
@@ -10,11 +11,12 @@ app = Flask(__name__)
 def visualizar_produto_request():
     name = request.args.get('name')
     if not name:
-        return jsonify({'error': 'O parâmetro "name" é obrigatório.'}), 400
+        produto = visualizar_produtos()
+        return jsonify({'data': produto, 'mensagem': 'Consulta realizada com sucesso.'}), 200
     produto = visualizar_produto(name)
     return jsonify({'data': produto, 'mensagem': 'Consulta realizada com sucesso.'}), 200
 
-@app.route('/produto/update', methods=['POST'])
+@app.route('/produto', methods=['PATCH'])
 def update_produto():
     data = request.json
     product_id = data.get('product_id')
@@ -26,7 +28,21 @@ def update_produto():
     alterar_preco(product_id, novo_preco)
     return jsonify({'mensagem': f'Produto {product_id} atualizado com sucesso para o preço {novo_preco}.'}), 200
 
-@app.route('/produto/delete', methods=['DELETE'])
+@app.route('/produto', methods=['POST'])
+def create_produto():
+    data = request.json
+    set_name = data.get('name')
+    set_color = data.get('color')
+    set_price = data.get('price')
+    set_weight = data.get('weight')
+
+    if not all([set_name, set_color, set_price, set_weight]):
+        return jsonify({'error': 'Todos os parâmetros são obrigatórios.'}), 400
+
+    criar_produto(set_name, set_color, set_price, set_weight)
+    return jsonify({'mensagem': 'Produto criado com sucesso!'}), 201
+
+@app.route('/produto', methods=['DELETE'])
 def delete_produto():
     data = request.json
     product_id = data.get('product_id')

@@ -87,9 +87,9 @@ def criar_produto(set_name, set_color, set_price, set_weight):
             print("\n(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Seu item já está disponível no banco de dados!\n")
 
 if __name__ == "__main__":
-    set_name = 'Paulinho'
-    set_color = 'White'
-    set_price = 69.69
-    set_weight = 69.0
+    set_name = 'Seu Jorge'
+    set_color = 'Preto'
+    set_price = 77.77
+    set_weight = 70.0
 
     criar_produto(set_name, set_color, set_price, set_weight)
