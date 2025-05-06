@@ -11,7 +11,6 @@ app = Flask(__name__)
 def visualizar_produto_request():
     name = request.args.get('name')
     product_id = request.args.get('product_id')
-    print(not name and not product_id)
     if not name and not product_id:
         produto = visualizar_produtos()
         return jsonify({'data': produto, 'mensagem': 'Consulta realizada com sucesso.'}), 200
