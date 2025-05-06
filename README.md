@@ -1,11 +1,16 @@
-Purpose of the Repository
+Purpose of the Repository 
+
 This repository appears to be focused on implementing a Python-based system for interacting with a SQL Server database, specifically the "AdventureWorks2017" database. It provides functionality to create, read, update, and delete (CRUD) product records using Python and Flask for API endpoints. The repository structure and code suggest its purpose is to demonstrate or facilitate database operations programmatically.
 
-Features and Technologies Used
-Technologies: The repository predominantly uses Python (100%) and integrates with SQL Server using pyodbc. Flask is employed to expose APIs for database operations.
-Features:
+Features and Technologies Used 
+
+Technologies:  
+The repository predominantly uses Python (100%) and integrates with SQL Server using pyodbc. Flask is employed to expose APIs for database operations.
+Features: 
+
 Database Connectivity: Functions establish connections to the SQL Server using credentials stored in a dictionary (DB_CONFIG).
-CRUD Operations:
+CRUD Operations: 
+
 Insert: insert_python_banco.py provides methods to add new products, including generating unique product numbers.
 Select: select_python_banco.py retrieves product details and exports them to JSON.
 Update: update_python_banco.py allows updates to product pricing.
