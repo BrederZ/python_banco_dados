@@ -17,7 +17,8 @@ Delete: delete_python_banco.py enables product removal.
 API Endpoints: A Flask application (main.py) exposes RESTful endpoints for each CRUD operation, making the system accessible via HTTP requests.
 This repository is a practical example of combining Python, Flask, and SQL Server for database management and API development.
 ____________________________________________________________________________________________________________________________________
-Propósito do Repositório
+Propósito do Repositório 
+
 Este repositório tem como objetivo implementar um sistema em Python para interação com um banco de dados SQL Server, especificamente o "AdventureWorks2017". Ele oferece funcionalidades para realizar operações CRUD (criar, ler, atualizar e deletar) em registros de produtos, utilizando APIs RESTful desenvolvidas com Flask. A análise do código sugere que o repositório é voltado para aprendizado ou automação de operações em bancos de dados.
 
 Recursos e Tecnologias Utilizadas 
