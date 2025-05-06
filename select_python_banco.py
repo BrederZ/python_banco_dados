@@ -1,61 +1,36 @@
-import pyodbc
 import json
+from conexao_banco import get_connection  # ajuste se o nome do arquivo de conexão for diferente
 
-# Parâmetros de conexão
-DB_CONFIG = {
-    'server': r'localhost\SQLEXPRESS',
-    'database': 'AdventureWorks2017',
-    'username': 'bredinPython',
-    'password': 'asdf1234!'
-}
-
-def get_connection(config):
-    return pyodbc.connect(
-        f"DRIVER={{SQL Server}};"
-        f"SERVER={config['server']};"
-        f"DATABASE={config['database']};"
-        f"UID={config['username']};"
-        f"PWD={config['password']}"
-    )
 def visualizar_produtos():
     query = """
         SELECT ProductID, Name, ListPrice, Color, Weight
         FROM Production.Product
-        """
-    with get_connection(DB_CONFIG) as conn:
+    """
+    with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(query)
-        
-        columns = [column[0] for column in cursor.description]
+        columns = [col[0] for col in cursor.description]
         results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    return results
 
-    # Exibir JSON formatado no terminal
-    json_output = json.dumps(results, indent=4, default=str)
-    print(json_output)
-
-    # Salvar em arquivo JSON
-    with open('produtos.json', 'w', encoding='utf-8') as f:
-        json.dump(results, f, indent=4, default=str, ensure_ascii=False)
-
-    return(results)
-
-def visualizar_produto(name, product_id):
-    
+def buscar_produto_dinamico(termo):
     query = """
         SELECT ProductID, Name, ListPrice, Color, Weight
         FROM Production.Product
-        WHERE Name LIKE ? or ProductID = ?
+        WHERE
+            CAST(ProductID AS NVARCHAR) LIKE ?
+            OR Name LIKE ?
+            OR Color LIKE ?
+            OR CAST(ListPrice AS NVARCHAR) LIKE ?
+            OR CAST(Weight AS NVARCHAR) LIKE ?
     """
-    with get_connection(DB_CONFIG) as conn:
-        cursor = conn.cursor()
-        cursor.execute(query, (f'%{name}%', product_id))
-        
-        columns = [column[0] for column in cursor.description]
-        results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    like_term = f"%{termo}%"
 
-    # Exibir JSON formatado no terminal
-    json_output = json.dumps(results, indent=4, default=str)
-    print(json_output)
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(query, (like_term, like_term, like_term, like_term, like_term))
+        columns = [col[0] for col in cursor.description]
+        results = [dict(zip(columns, row)) for row in cursor.fetchall()]
 
     # Salvar em arquivo JSON
     with open('produtos.json', 'w', encoding='utf-8') as f:
