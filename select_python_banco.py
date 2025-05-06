@@ -39,15 +39,16 @@ def visualizar_produtos():
 
     return(results)
 
-def visualizar_produto(name):
+def visualizar_produto(name, product_id):
+    
     query = """
         SELECT ProductID, Name, ListPrice, Color, Weight
         FROM Production.Product
-        WHERE Name LIKE ?
+        WHERE Name LIKE ? or ProductID = ?
     """
     with get_connection(DB_CONFIG) as conn:
         cursor = conn.cursor()
-        cursor.execute(query, (f'%{name}%',))
+        cursor.execute(query, (f'%{name}%', product_id))
         
         columns = [column[0] for column in cursor.description]
         results = [dict(zip(columns, row)) for row in cursor.fetchall()]
@@ -61,7 +62,3 @@ def visualizar_produto(name):
         json.dump(results, f, indent=4, default=str, ensure_ascii=False)
 
     return(results)
-
-# Exemplo de uso
-if __name__ == "__main__":
-    visualizar_produto('Buginganga')

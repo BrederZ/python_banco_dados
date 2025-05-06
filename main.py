@@ -10,11 +10,14 @@ app = Flask(__name__)
 @app.route('/produto', methods=['GET'])
 def visualizar_produto_request():
     name = request.args.get('name')
-    if not name:
+    product_id = request.args.get('product_id')
+    print(not name and not product_id)
+    if not name and not product_id:
         produto = visualizar_produtos()
         return jsonify({'data': produto, 'mensagem': 'Consulta realizada com sucesso.'}), 200
-    produto = visualizar_produto(name)
+    produto = visualizar_produto(name, product_id)
     return jsonify({'data': produto, 'mensagem': 'Consulta realizada com sucesso.'}), 200
+
 
 @app.route('/produto', methods=['PATCH'])
 def update_produto():
@@ -51,10 +54,9 @@ def delete_produto():
         return jsonify({'error': 'O parâmetro "product_id" é obrigatório.'}), 400
 
     sucesso = deletar_produto(product_id)
-    if sucesso:
-        return jsonify({'mensagem': f'Produto {product_id} deletado com sucesso!'}), 200
-    else:
-        return jsonify({'mensagem': f'Produto {product_id} não encontrado. Nenhuma exclusão realizada.'}), 404
+    if not sucesso:
+        return jsonify({'mensagem': f'Produto {product_id} não encontrado ou já excluido anteriomente. Nenhuma exclusão realizada.'}), 404
+    return jsonify({'mensagem': f'Produto {product_id} deletado com sucesso!'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
