@@ -1,5 +1,5 @@
 Purpose of the Repository
-This repository appears to be focused on implementing a Python-based system for interacting with a SQL Server database, specifically the "AdventureWorks2017" database. It provides functionality to create, read, update, and delete (CRUD) product records using Python and Flask for API endpoints. Although the README file is unavailable, the repository structure and code suggest its purpose is to demonstrate or facilitate database operations programmatically.
+This repository appears to be focused on implementing a Python-based system for interacting with a SQL Server database, specifically the "AdventureWorks2017" database. It provides functionality to create, read, update, and delete (CRUD) product records using Python and Flask for API endpoints. The repository structure and code suggest its purpose is to demonstrate or facilitate database operations programmatically.
 
 Features and Technologies Used
 Technologies: The repository predominantly uses Python (100%) and integrates with SQL Server using pyodbc. Flask is employed to expose APIs for database operations.
@@ -14,7 +14,7 @@ API Endpoints: A Flask application (main.py) exposes RESTful endpoints for each 
 This repository is a practical example of combining Python, Flask, and SQL Server for database management and API development.
 ____________________________________________________________________________________________________________________________________
 Propósito do Repositório
-Este repositório tem como objetivo implementar um sistema em Python para interação com um banco de dados SQL Server, especificamente o "AdventureWorks2017". Ele oferece funcionalidades para realizar operações CRUD (criar, ler, atualizar e deletar) em registros de produtos, utilizando APIs RESTful desenvolvidas com Flask. Embora o arquivo README não esteja disponível, a análise do código sugere que o repositório é voltado para aprendizado ou automação de operações em bancos de dados.
+Este repositório tem como objetivo implementar um sistema em Python para interação com um banco de dados SQL Server, especificamente o "AdventureWorks2017". Ele oferece funcionalidades para realizar operações CRUD (criar, ler, atualizar e deletar) em registros de produtos, utilizando APIs RESTful desenvolvidas com Flask. A análise do código sugere que o repositório é voltado para aprendizado ou automação de operações em bancos de dados.
 
 Recursos e Tecnologias Utilizadas
 Tecnologias: O repositório utiliza Python (100%) e a biblioteca pyodbc para conexão com o SQL Server. O Flask é empregado para criar a API REST.
