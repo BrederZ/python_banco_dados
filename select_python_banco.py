@@ -1,5 +1,5 @@
 import json
-from conexao_banco import get_connection  # ajuste se o nome do arquivo de conexão for diferente
+from conexao_banco import get_connection
 
 def visualizar_produtos():
     query = """
